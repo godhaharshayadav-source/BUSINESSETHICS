@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ARIA - Corporate Pitch Deck</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -29,7 +29,7 @@
             width: 100%;
             height: 100%;
             position: absolute;
-            background-color: #e9ecef;
+            background-color: #f1f5f9; /* Default light slate BG */
         }
 
         .slide.active {
@@ -40,32 +40,41 @@
 
         .slide-content {
             flex-grow: 1;
-            padding: 3rem 4rem;
+            padding: 2.5rem 4rem; 
             display: flex;
             flex-direction: column;
             height: 100%;
-            overflow: hidden;
+            overflow: hidden; /* This is key */
         }
 
         .slide-header {
-            font-size: 1.25rem;
+            font-size: 1.15rem; 
             font-weight: 600;
             color: #003366; /* TATA Blue */
+            margin-bottom: 0.25rem;
+            flex-shrink: 0; /* Prevent shrinking */
         }
 
         .slide-subheader {
-            font-size: 2.5rem;
+            font-size: 2.25rem; 
             font-weight: 700;
             color: #343a40;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem; 
+            flex-shrink: 0; /* Prevent shrinking */
+        }
+        
+        .slide-content p, .slide-content li {
+            font-size: 1rem;
+            line-height: 1.6;
         }
 
-        /* Slide 1 Specifics */
+        /* Persona Card Base */
         .persona-card {
-            background-color: #f8f9fa;
+            background-color: #ffffff; 
             border: 1px solid #dee2e6;
             border-radius: 0.75rem;
             padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
         }
         .stat {
             font-size: 2.25rem;
@@ -78,16 +87,40 @@
             font-weight: 500;
             color: #495057;
         }
+        
+        /* Pain point visual */
+        .pain-point-visual {
+            display: flex;
+            align-items: center;
+            background-color: #fff1f2; /* Red 50 */
+            border: 1px solid #fecaca; /* Red 200 */
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+        }
+        .pain-point-visual svg {
+            flex-shrink: 0;
+            width: 1.5rem;
+            height: 1.5rem;
+            color: #dc2626; /* Red 600 */
+            margin-right: 0.75rem;
+        }
         .pain-point {
-            font-size: 1.1rem;
+            font-size: 1rem; 
             line-height: 1.6;
-            color: #343a40;
+            color: #b91c1c; /* Red 700 */
+            font-weight: 500;
+        }
+        .pain-point strong {
+            font-weight: 700;
+            color: #b91c1c;
         }
 
-        /* Slide 2 Specifics */
+
+        /* Spec Card (Dark BG) */
         .spec-card {
-            background-color: rgba(0, 51, 102, 0.9); /* TATA Blue */
+            background-color: rgba(255, 255, 255, 0.05); /* Glassmorphism effect */
             border-radius: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
             padding: 2rem;
             display: flex;
             flex-direction: column;
@@ -108,34 +141,38 @@
             font-weight: 300;
             line-height: 1.6;
             flex-grow: 1;
+            opacity: 0.9;
         }
 
-        /* Slide 3-5 (Cue Card) */
-        .cue-card-container {
-            flex-grow: 1;
+        /* --- CUE CARD NEW LAYOUT (SLIDES 5-8) --- */
+        
+        /* This is the top part: Diagram + Definition */
+        .cue-card-top-row {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            overflow: hidden;
+            grid-template-columns: 2fr 3fr; /* 40% diagram, 60% text */
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            flex-shrink: 0;
         }
         
-        .sbmc-diagram {
-            background-color: #f8f9fa;
+        .sbmc-diagram-new {
+            background-color: #ffffff; 
             border: 1px solid #dee2e6;
             border-radius: 0.5rem;
-            padding: 1rem;
+            padding: 0.75rem; /* Tighter padding */
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             grid-template-rows: repeat(3, 1fr);
-            gap: 0.5rem;
-            font-size: 0.75rem; /* Smaller text for diagram */
+            gap: 0.35rem; /* More gap */
+            font-size: 0.65rem; /* Slightly larger */
             font-weight: 600;
-            color: #495057;
+            color: #495057; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
         .sbmc-box {
-            border: 2px solid #ced4da;
+            border: 1px solid #ced4da; 
             border-radius: 0.25rem;
-            padding: 0.5rem;
+            padding: 0.35rem; /* More padding */
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
@@ -143,10 +180,10 @@
             line-height: 1.3;
         }
         .sbmc-box-title {
-            font-size: 0.8rem;
+            font-size: 0.7rem; 
             font-weight: 700;
             color: #003366;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.1rem;
         }
         .sbmc-box.highlight {
             border-color: #003366;
@@ -156,7 +193,7 @@
         .sbmc-box.span-2 { grid-column: span 2; }
         .sbmc-box.span-5 { grid-column: span 5; }
         .sbmc-box .num {
-            font-size: 1.25rem;
+            font-size: 1.1rem; /* Larger num */
             font-weight: 800;
             margin-top: auto;
             align-self: flex-end;
@@ -166,93 +203,79 @@
             opacity: 1;
         }
 
-        /* Interactive Tabs */
-        .cue-card-interactive {
+        /* This is the bottom part: 3 analysis cards */
+        .cue-card-bottom-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.5rem;
+            flex-grow: 1;
+            overflow: hidden; /* Prevent this grid from overflowing */
+        }
+
+        .cue-card {
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 0.75rem;
+            padding: 1rem; /* Tighter padding */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             display: flex;
             flex-direction: column;
-            background-color: #fff;
-            border: 2px solid #003366;
-            border-radius: 1rem;
-            overflow: hidden;
         }
-        .cue-header {
-            padding: 2rem 2.5rem 1.5rem 2.5rem;
-            border-bottom: 1px solid #dee2e6;
-        }
+        
         .cue-title {
-            font-size: 2rem;
+            font-size: 1.15rem; /* Smaller */
             font-weight: 700;
             color: #003366;
         }
         .cue-desc {
-            font-size: 1rem;
+            font-size: 0.8rem; /* Smaller */
             color: #343a40;
-            margin-top: 0.5rem;
+            margin-top: 0.25rem;
+            line-height: 1.5;
         }
         .cue-category {
-            font-size: 0.9rem;
+            font-size: 0.75rem; /* Smaller */
             font-weight: 600;
             color: #495057;
             margin-top: 0.25rem;
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 0.5rem;
         }
         
-        .cue-tab-nav {
-            display: flex;
-            padding: 0 2.5rem;
-            border-bottom: 1px solid #dee2e6;
-            background-color: #f8f9fa;
-        }
-        .cue-tab-button {
-            padding: 1rem 1.5rem;
-            font-size: 1rem;
-            font-weight: 600;
-            color: #495057;
-            border-bottom: 3px solid transparent;
-            cursor: pointer;
-            margin-bottom: -1px; /* Aligns with border */
-        }
-        .cue-tab-button.active {
-            color: #003366;
-            border-bottom-color: #003366;
-        }
-        .cue-tab-button .plus { color: #008000; font-weight: 700; margin-right: 0.5rem; }
-        .cue-tab-button .minus { color: #D00000; font-weight: 700; margin-right: 0.5rem; }
-        .cue-tab-button .star { color: #ffc107; font-weight: 700; margin-right: 0.5rem; }
-
-        .cue-tab-content {
-            display: none; /* Hidden by default */
-            padding: 2rem;
-            flex-grow: 1;
-            overflow-y: auto;
-        }
-        .cue-tab-content.active {
-            display: block;
-        }
-        .cue-tab-content h3 {
-            font-size: 1.25rem;
+        .cue-section-title {
+            font-size: 0.85rem; /* Smaller */
             font-weight: 700;
             color: #343a40;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
         }
-        .cue-tab-content p {
-            font-size: 1rem;
-            line-height: 1.7;
+        .cue-section-title .plus { color: #15803d; font-weight: 700; margin-right: 0.5rem; }
+        .cue-section-title .minus { color: #b91c1c; font-weight: 700; margin-right: 0.5rem; }
+        .cue-section-title .star { color: #d97706; font-weight: 700; margin-right: 0.5rem; }
+
+        .cue-section-text {
+            font-size: 0.8rem; /* Smaller */
+            line-height: 1.6;
             color: #343a40;
         }
 
 
         /* Footer */
         .slide-footer {
-            padding-top: 1.5rem;
+            padding-top: 1rem; 
             border-top: 1px solid #ced4da;
             display: flex;
             justify-content: space-between;
             align-items: center;
             color: #495057;
             font-weight: 500;
+            font-size: 0.9rem;
+            flex-shrink: 0; /* Prevent shrinking */
         }
         .slide-footer .logo {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 800;
             color: #003366;
             letter-spacing: -1px;
@@ -290,56 +313,96 @@
 
     <div class="presentation-container">
 
-        <!-- Slide 1: Title Slide (NEW) -->
+        <!-- Slide 1: Title Slide -->
         <div id="slide1" class="slide active">
-            <div class="slide-content" style="background-color: #003366; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
-                
+            <div class="slide-content" style="background-color: #003366; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding-bottom: 2rem;">
                 <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white;">
-                    <h1 style="font-size: 2rem; font-weight: 500; letter-spacing: 0.1em; opacity: 0.8;">
+                    <h1 class="text-2xl font-semibold tracking-widest opacity-80">
                         GROUP 12
                     </h1>
-                    <h2 style="font-size: 5rem; font-weight: 800; margin: 1rem 0; letter-spacing: -2px; line-height: 1;">
+                    <h2 class="text-7xl font-black my-4 tracking-tighter">
                         TATA ARIA
                     </h2>
-                    <p style="font-size: 1.75rem; font-weight: 300; opacity: 0.9;">
-                        Launch of Car for Specially-Abled People
+                    <p class="text-3xl font-light opacity-90">
+                        Inclusive Autonomous Mobility Solution
                     </p>
-
-                    <div style="margin-top: 4rem; font-size: 1rem; opacity: 0.7; line-height: 1.6;">
+                    <div class="mt-16 text-base opacity-70 leading-relaxed">
                         <p><strong>Team Members:</strong> Abhay Nagendrapratap Singh | Yash Lodha | Jahnavi Hosure | Harsha Vardhan Yadav Godha</p>
-                        <p style="margin-top: 0.5rem;"><strong>Course:</strong> Business Ethics | <strong>Tutor:</strong> Prof. Konstadinos-kutsikos</p>
+                        <p class="mt-2"><strong>Course:</strong> Business Ethics | <strong>Tutor:</strong> Prof. Konstadinos-kutsikos</p>
                     </div>
                 </div>
-
-                <!-- Footer -->
                 <div class="slide-footer" style="border-top-color: rgba(255,255,255,0.2); width: 90%; padding-left: 1rem; padding-right: 1rem;">
                     <div class="logo text-white/90">TATA ARIA</div>
                     <div class="text-white/70">CONFIDENTIAL & PROPRIETARY</div>
-                    <div class="text-white/70">1 / 6</div>
+                    <div class="text-white/70">1 / 10</div>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 2: The Persona (Was Slide 1) -->
+        <!-- Slide 2: Introduction -->
         <div id="slide2" class="slide">
             <div class="slide-content">
-                <h1 class="slide-header">The ARIA Initiative</h1>
-                <p class="slide-subheader">Our Lighthouse Customer: The Market We Will Win</p>
-                
-                <!-- Content Area -->
-                <div class="flex-grow grid grid-cols-2 gap-8">
-                    <!-- Card 1: Persona Profile -->
-                    <div class="persona-card flex flex-col">
-                        <h3 class="text-xl font-bold text-gray-800 mb-6">PROFILE: "SARAH"</h3>
+                <h1 class="slide-header">The Challenge</h1>
+                <p class="slide-subheader">The Global Mobility Crisis for People with Disabilities</p>
+                <div class="grid grid-cols-2 gap-8 flex-grow">
+                    <div class="flex flex-col justify-center pr-8">
+                        <h3 class="text-2xl font-bold text-red-700 mb-4">A Systemic Barrier</h3>
+                        <p class="text-lg text-gray-700 leading-relaxed">
+                            Transportation is a critical barrier to equity. The World Bank reports that a lack of accessible transport worsens economic and social isolation, trapping individuals in poverty.
+                        </p>
+                        <ul class="space-y-4 mt-6 text-lg">
+                            <li class="flex items-start">
+                                <span class="text-red-700 font-bold text-2xl mr-3">►</span>
+                                <span>Transit is reported as **15x harder** for people with disabilities.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-700 font-bold text-2xl mr-3">►</span>
+                                <span>**25 million** Americans report difficulty getting needed transport.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-700 font-bold text-2xl mr-3">►</span>
+                                <span>Only **1 in 5** working-age adults with transport difficulty is employed.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-col justify-center space-y-8">
+                        <div class="bg-blue-800 text-white p-8 rounded-xl shadow-xl">
+                            <h4 class="text-7xl font-black text-cyan-300">40%</h4>
+                            <p class="text-xl font-medium mt-2">of disabled adults had **zero trips** in a specified day (vs. 21% of non-disabled).</p>
+                        </div>
+                         <div class="bg-blue-800 text-white p-8 rounded-xl shadow-xl">
+                            <h4 class="text-7xl font-black text-cyan-300">3 Million</h4>
+                            <p class="text-xl font-medium mt-2">Americans with disabilities have become **homebound** due to transport barriers.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide-footer">
+                    <div class="logo">TATA ARIA</div>
+                    <div>CONFIDENTIAL & PROPRIETARY</div>
+                    <div>2 / 10</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: The Persona -->
+        <div id="slide3" class="slide">
+            <div class="slide-content">
+                <h1 class="slide-header">Our Lighthouse Customer</h1>
+                <p class="slide-subheader">Profile: "Sarah" (34, Chicago)</p>
+                <div class="flex-grow grid grid-cols-3 gap-8">
+                    <div class="persona-card flex flex-col shadow-lg">
+                        <h3 class="text-xl font-bold text-gray-800 mb-6">PROFILE</h3>
                         <div class="grid grid-cols-2 gap-y-6">
                             <div>
                                 <p class="stat">34</p>
                                 <p class="stat-label">Age</p>
                             </div>
                             <div>
-                                <p class="stat">Mother of 3</p>
-                                <p class="stat-label">Family</p>
+                                <p class="stat">3</p>
+                                <p class="stat-label">Children</p>
                             </div>
+                        </div>
+                         <div class="grid grid-cols-1 gap-y-6 mt-6">
                             <div>
                                 <p class="stat">Full-Time</p>
                                 <p class="stat-label">Employment</p>
@@ -350,279 +413,390 @@
                             </div>
                         </div>
                         <div class="mt-8">
-                            <h4 class="font-bold text-lg text-red-700">CRITICAL CHALLENGE</h4>
-                            <p class="text-lg text-gray-700 mt-2">Spastic Cerebral Palsy (Left-Side Mobility Impairment). Juggling childcare and a career is a daily logistical nightmare of pain, stress, and "time poverty."</p>
+                            <svg class="w-12 h-12 text-red-200" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 9.983-9.57v7.391c-3.469 0-5.704 2.312-5.704 5.704h5.704v3.866h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9.983-9.57v7.391c-3.469 0-5.704 2.312-5.704 5.704h5.704v3.866h-9.983z"/></svg>
+                            <h4 class="font-bold text-lg text-red-700 mt-2">CRITICAL CHALLENGE</h4>
+                            <p class="text-lg text-gray-700 mt-1">Spastic Cerebral Palsy. Juggling childcare and a career is a daily logistical nightmare.</p>
                         </div>
                     </div>
-                    <!-- Card 2: Pain Points -->
-                    <div class="persona-card border-2 border-red-700 bg-red-50/50">
+                    <div class="persona-card border-2 border-red-700 bg-white col-span-2 shadow-lg">
                         <h3 class="text-xl font-bold text-red-700 mb-6">DAILY PAIN POINTS</h3>
-                        <ul class="space-y-4">
-                            <li class="pain-point"><strong class="font-semibold">Time Poverty:</strong> ~4 hours/day lost to inefficient transit.</li>
-                            <li class="pain-point"><strong class="font-semibold">Physical Strain:</strong> Constant pain (8/10) from navigating cars and public transport with a wheelchair.</li>
-                            <li class="pain-point"><strong class="font-semibold">High Stress:</strong> Daily anxiety (9/10) from unreliability, delays, and managing children's safety.</li>
-                            <li class="pain-point"><strong class="font-semibold">Financial Drain:</strong> Lost wages from lateness ($160/week) and high costs of patchwork solutions.</li>
-                            <li class="pain-point"><strong class="font-semibold">Social Isolation:</strong> Lack of freedom and independence; feeling like a burden.</li>
-                        </ul>
+                        <div class="space-y-4">
+                            <div class="pain-point-visual">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                <p class="pain-point"><strong>Time Poverty:</strong> ~4 hours/day lost to inefficient transit and waiting.</p>
+                            </div>
+                            <div class="pain-point-visual">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126z" /></svg>
+                                <p class="pain-point"><strong>High Stress:</strong> Constant anxiety (rated 9/10) from unreliability and managing children's safety.</p>
+                            </div>
+                            <div class="pain-point-visual">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.75A.75.75 0 013 4.5h.75m0 0H21m-12 6h9m-9 3h9m-9 3h9m0-6v-.75a.75.75 0 00-.75-.75h-.75m0 0v.75c0 .414.336.75.75.75h.75m0 0H21m-3 3v.75a.75.75 0 01-.75.75h-.75m0 0v-.75c0-.414.336.75.75.75h.75m0 0H21m-3 3v.75a.75.75 0 01-.75.75h-.75m0 0v-.75c0-.414.336.75.75.75h.75m0 0H21" /></svg>
+                                <p class="pain-point"><strong>Physical Strain:</strong> Significant physical exertion and risk in transfers.</p>
+                            </div>
+                            <div class="pain-point-visual">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.768 0-1.536.219-2.121.659L9 15.182z" /></svg>
+                                <p class="pain-point"><strong>Financial Drain:</strong> **~$160/week (≈$8,300/year)** on cabs and subsidized services.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
-                <!-- Bottom Text -->
-                <div class="pt-6 text-center">
+                <div class="pt-4 text-center">
                     <h2 class="text-2xl font-bold text-blue-800">SARAH IS NOT A NICHE. SHE IS A MASS MARKET.</h2>
                     <h3 class="text-xl font-light text-gray-700">Potential Market (3 US Cities): <span class="font-bold text-blue-800">~650,000 Users</span></h3>
                 </div>
-
-                <!-- Footer -->
-                <div class="slide-footer mt-4">
+                <div class="slide-footer mt-2">
                     <div class="logo">TATA ARIA</div>
                     <div>CONFIDENTIAL & PROPRIETARY</div>
-                    <div>2 / 6</div>
+                    <div>3 / 10</div>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 3: The Value Proposition (Was Slide 2) -->
-        <div id="slide3" class="slide">
-            <div class="slide-content" style="background: url('https://placehold.co/1600x900/003366/003366?text=') no-repeat center center; background-size: cover;">
+        <!-- Slide 4: The Value Proposition -->
+        <div id="slide4" class="slide">
+            <div class="slide-content" style="background-color: #003366; padding-bottom: 2rem;">
                 <h1 class="slide-header text-white/80">The Solution</h1>
                 <p class="slide-subheader text-white">ARIA: The Complete Mobility Ecosystem</p>
-                
                 <div class="flex-grow grid grid-cols-4 gap-6">
-                    <!-- Spec Card 1: The Vehicle -->
-                    <div class="spec-card">
+                    <div class="spec-card shadow-2xl">
                         <svg class="spec-icon text-cyan-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
-                        <h3 class="spec-title">Autonomous & Accessible</h3>
-                        <p class="spec-desc">A zero-emission EV fleet with automatic ramps, wheelchair lifts, and child-safe seating. Door-to-door service ends physical strain.</p>
+                        <h3 class="spec-title">Purpose-Built AV</h3>
+                        <p class="spec-desc">Zero-emission EV with integrated ramp and lowered floor. Allows Sarah to slide in via wheelchair, side-by-side with her children. No transfers needed.</p>
                     </div>
-                    <!-- Spec Card 2: The Service -->
-                    <div class="spec-card">
+                    <div class="spec-card shadow-2xl">
                         <svg class="spec-icon text-cyan-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg>
-                        <h3 class="spec-title">Concierge & Logistics</h3>
-                        <p class="spec-desc">Not just A-to-B. ARIA integrates with partner supermarkets and pharmacies for curbside pickup, managing daily errands.</p>
+                        <h3 class="spec-title">Concierge Service</h3>
+                        <p class="spec-desc">Not just A-to-B. ARIA integrates with partner supermarkets and pharmacies (like CVS pilots) for curbside pickup and delivery, managing daily errands.</p>
                     </div>
-                    <!-- Spec Card 3: The Ecosystem -->
-                    <div class="spec-card">
+                    <div class="spec-card shadow-2xl">
                         <svg class="spec-icon text-cyan-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                        <h3 class="spec-title">Time & Financial Uplift</h3>
-                        <p class="spec-desc">Gives back 2+ hours per day. Our model shows a net gain of +$8,700/year for Sarah from saved wages and subscription savings.</p>
+                        <h3 class="spec-title">Economic Impact</h3>
+                        <p class="spec-desc">Gives back 1,000+ productive hours/year. This translates to **+$8,700/year** in recovered salary for Sarah, turning wasted time into earning time.</p>
                     </div>
-                    <!-- Spec Card 4: The Trust -->
-                    <div class="spec-card">
+                    <div class="spec-card shadow-2xl">
                         <svg class="spec-icon text-cyan-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 14l9-5-9-5-9 5 9 5z" /><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" /></svg>
-                        <h3 class="spec-title">Healthcare & Safety Net</h3>
-                        <p class="spec-desc">A 'Peace of Mind' service. Direct integration with healthcare providers, emergency 'Care' button, and remote monitoring for child safety.</p>
+                        <h3 class="spec-title">Healthcare Safety Net</h3>
+                        <p class="spec-desc">A 'Peace of Mind' service. On-board sensors (vital tracking, fall detection) and a one-touch "Care" button to connect with 911 or telehealth services.</p>
                     </div>
                 </div>
-
-                <div class="slide-footer mt-6">
+                <div class="slide-footer mt-4" style="border-top-color: rgba(255,255,255,0.2);">
                     <div class="logo text-white/90">TATA ARIA</div>
                     <div class="text-white/70">CONFIDENTIAL & PROPRIETARY</div>
-                    <div class="text-white/70">3 / 6</div>
+                    <div class="text-white/70">4 / 10</div>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 4: Cue Card 1 (FIXED) -->
-        <div id="slide4" class="slide">
+        <!-- Slide 5: Cue Card 1 (NEW 2-PART LAYOUT) -->
+        <div id="slide5" class="slide" style="background-color: #0d1a2e;">
             <div class="slide-content">
-                <h1 class="slide-header">Our Strategic Model (1/3)</h1>
-                <p class="slide-subheader">The Core Revenue Engine</p>
+                <h1 class="slide-header text-blue-300">Our Strategic Model (1/4)</h1>
+                <p class="slide-subheader text-white">Product as a Service</p>
 
-                <div class="cue-card-container">
-                    <!-- SBMC Diagram -->
-                    <div class="sbmc-diagram">
+                <!-- Top Row: Diagram + Definition -->
+                <div class="cue-card-top-row">
+                    <div class="sbmc-diagram-new shadow-lg"> 
                         <div class="sbmc-box"><span class="sbmc-box-title">Sustainable Partners</span><span class="num">1</span></div>
                         <div class="sbmc-box"><span class="sbmc-box-title">Sustainable Value Creation</span><span class="num">2</span></div>
                         <div class="sbmc-box highlight"><span class="sbmc-box-title">Sustainable Value Proposition</span><span class="num">4</span></div>
                         <div class="sbmc-box highlight"><span class="sbmc-box-title">Sustainable Customer Relation</span><span class="num">5</span></div>
                         <div class="sbmc-box"><span class="sbmc-box-title">Responsible Customers</span><span class="num">7</span></div>
-                        
                         <div class="sbmc-box" style="grid-row: 2; grid-column: 1;"><!-- Empty placeholder --></div>
                         <div class="sbmc-box"><span class="sbmc-box-title">Sustainable Tech & Resources</span><span class="num">3</span></div>
                         <div class="sbmc-box" style="grid-row: 2; grid-column: 3;"><!-- Empty placeholder --></div>
                         <div class="sbmc-box"><span class="sbmc-box-title">Sust. Channels</span><span class="num">6</span></div>
                         <div class="sbmc-box highlight"><span class="sbmc-box-title">End of Life</span><span class="num">8</span></div>
-                        
                         <div class="sbmc-box span-2"><span class="sbmc-box-title">Cost Structure & Additional Costs</span></div>
                         <div class="sbmc-box"><span class="sbmc-box-title">Subsidisation</span></div>
                         <div class="sbmc-box span-2"><span class="sbmc-box-title">Revenue & Sustainability Premium</span></div>
                     </div>
-                    
-                    <!-- Interactive Tabs -->
-                    <div class="cue-card-interactive">
-                        <div class="cue-header">
-                            <h2 class="cue-title">1. Product as a Service</h2>
-                            <p class="cue-desc">Customers pay for the functionality of a product, without the responsibility of repairing, replacing or disposing it.</p>
-                            <p class="cue-category">Category: Circular Economy</p>
-                        </div>
-                        <nav class="cue-tab-nav">
-                            <button class="cue-tab-button active" onclick="openTab(this, 's4-tab1')">
-                                <span class="plus">+</span>Positive Impact
-                            </button>
-                            <button class="cue-tab-button" onclick="openTab(this, 's4-tab2')">
-                                <span class="minus">-</span>Risks
-                            </button>
-                            <button class="cue-tab-button" onclick="openTab(this, 's4-tab3')">
-                                <span class="star">★</span>In the Spotlight
-                            </button>
-                        </nav>
-                        <div id="s4-tab1" class="cue-tab-content active">
-                            <h3>Creates Long-Term, Predictable Value</h3>
-                            <p>Creates long-term, predictable subscription revenue ($399/mo). Builds extreme customer loyalty by integrating into their daily life. Reduces waste and extends asset lifecycles, improving ESG metrics.</p>
-                        </div>
-                        <div id="s4-tab2" class="cue-tab-content">
-                            <h3>Requires High Initial Capital</h3>
-                            <p>High initial capital investment for fleet (Est. $250-350M). Requires robust, world-class remote maintenance and logistics operations to ensure service uptime and reliability.</p>
-                        </div>
-                        <div id="s4-tab3" class="cue-tab-content">
-                            <h3>The ARIA Application: Subscription for Life</h3>
-                            <p>This is our central strategy. We are not selling cars; we are selling a subscription to an **independent life**. The car is just the tool. This model shifts competition from unit cost (Red Ocean) to holistic experience (Blue Ocean).</p>
-                        </div>
+                    <div class="cue-card">
+                        <h2 class="cue-title">Product as a Service</h2>
+                        <p class="cue-desc">Customers pay for the functionality of a product, without the responsibility of repairing, replacing or disposing it.</p>
+                        <p class="cue-category">Category: Circular Economy</p>
+                    </div>
+                </div>
+                
+                <!-- Bottom Row: 3 Analysis Cards -->
+                <div class="cue-card-bottom-row">
+                    <div class="cue-card">
+                        <h3 class="cue-section-title"><span class="plus">+</span>Positive Impact</h3>
+                        <p class="cue-section-text">This model eliminates the large capital expense of buying a specialized vehicle. It reduces waste, extends vehicle life (fleet servicing), and provides inclusive, high-end mobility as a right, not a privilege. It aligns with our $399/month subscription, covering the vehicle, maintenance, and insurance, which our simulation showed saved Sarah **$52/week**.</p>
+                    </div>
+                    <div class="cue-card">
+                        <h3 class="cue-section-title"><span class="minus">-</span>Challenges</h3>
+                        <p class="cue-section-text">A service fleet requires high capital and complex logistics (maintenance, charging). Customers become 100% reliant on ARIA's stability. SBMC analysis also warns of a **rebound effect**: if trips are too cheap, it could incentivize excessive use unless pricing is controlled.</p>
+                    </div>
+                    <div class="cue-card">
+                        <h3 class="cue-section-title"><span class="star">★</span>ARIA Example</h3>
+                        <p class="cue-section-text">Sarah pays $399/month, cancelling all her old expenses on car payments, fuel, and taxis. She is subscribing to mobility and peace of mind, not owning a car. This is the core of the business model.</p>
                     </div>
                 </div>
 
-                <div class="slide-footer mt-4">
-                    <div class="logo">TATA ARIA</div>
-                    <div>CONFIDENTIAL & PROPRIETARY</div>
-                    <div>4 / 6</div>
+                <div class="slide-footer" style="border-top-color: rgba(255,255,255,0.2);">
+                    <div class="logo text-white/90">TATA ARIA</div>
+                    <div class="text-white/70">CONFIDENTIAL & PROPRIETARY</div>
+                    <div class="text-white/70">5 / 10</div>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 5: Cue Card 2 (FIXED) -->
-        <div id="slide5" class="slide">
+        <!-- Slide 6: Cue Card 2 (NEW 2-PART LAYOUT) -->
+        <div id="slide6" class="slide" style="background-color: #0d1a2e;">
             <div class="slide-content">
-                <h1 class="slide-header">Our Strategic Model (2/3)</h1>
-                <p class="slide-subheader">The Core Value Proposition</p>
+                <h1 class="slide-header text-blue-300">Our Strategic Model (2/4)</h1>
+                <p class="slide-subheader text-white">Rent Instead of Buy</p>
 
-                <div class="cue-card-container">
-                    <!-- SBMC Diagram -->
-                    <div class="sbmc-diagram">
+                <div class="cue-card-top-row">
+                    <div class="sbmc-diagram-new shadow-lg">
                         <div class="sbmc-box"><span class="sbmc-box-title">Sustainable Partners</span><span class="num">1</span></div>
                         <div class="sbmc-box"><span class="sbmc-box-title">Sustainable Value Creation</span><span class="num">2</span></div>
-                        <div class="sbmc-box highlight"><span class="sbmc-box-title">Sustainable Value Proposition</span><span class="num">4</span></div>
+                        <div class="sbmc-box"><span class="sbmc-box-title">Sustainable Value Proposition</span><span class="num">4</span></div>
                         <div class="sbmc-box highlight"><span class="sbmc-box-title">Sustainable Customer Relation</span><span class="num">5</span></div>
                         <div class="sbmc-box highlight"><span class="sbmc-box-title">Responsible Customers</span><span class="num">7</span></div>
-                        
                         <div class="sbmc-box" style="grid-row: 2; grid-column: 1;"><!-- Empty placeholder --></div>
                         <div class="sbmc-box"><span class="sbmc-box-title">Sustainable Tech & Resources</span><span class="num">3</span></div>
                         <div class="sbmc-box" style="grid-row: 2; grid-column: 3;"><!-- Empty placeholder --></div>
                         <div class="sbmc-box"><span class="sbmc-box-title">Sust. Channels</span><span class="num">6</span></div>
                         <div class="sbmc-box"><span class="sbmc-box-title">End of Life</span><span class="num">8</span></div>
-                        
                         <div class="sbmc-box span-2"><span class="sbmc-box-title">Cost Structure & Additional Costs</span></div>
                         <div class="sbmc-box"><span class="sbmc-box-title">Subsidisation</span></div>
                         <div class="sbmc-box span-2"><span class="sbmc-box-title">Revenue & Sustainability Premium</span></div>
                     </div>
-
-                    <!-- Interactive Tabs -->
-                    <div class="cue-card-interactive">
-                        <div class="cue-header">
-                            <h2 class="cue-title">5. Behavior Change</h2>
-                            <p class="cue-desc">Stimulating customers to embrace new behaviors, such as reducing consumption or modifying daily habits.</p>
-                            <p class="cue-category">Category: IoT, Nudging, Quantified Self</p>
-                        </div>
-                        <nav class="cue-tab-nav">
-                            <button class="cue-tab-button active" onclick="openTab(this, 's5-tab1')">
-                                <span class="plus">+</span>Positive Impact
-                            </button>
-                            <button class="cue-tab-button" onclick="openTab(this, 's5-tab2')">
-                                <span class="minus">-</span>Risks
-                            </button>
-                            <button class="cue-tab-button" onclick="openTab(this, 's5-tab3')">
-                                <span class="star">★</span>In the Spotlight
-                            </button>
-                        </nav>
-                        <div id="s5-tab1" class="cue-tab-content active">
-                            <h3>Unlocks Massive Personal Value</h3>
-                            <p>Unlocks massive value for the customer. Reduces their stress from 9/10 to 2/10. Eliminates 4+ hours of wasted transit time. Creates a net-positive financial outcome (+$8.7k/yr) by eliminating lost wages.</p>
-                        </div>
-                        <div id="s5-tab2" class="cue-tab-content">
-                            <h3>Requires Absolute Trust</h3>
-                            <p>This model is built on a foundation of absolute trust. If the service fails even once (e.g., is late for a critical school pickup or doctor's appointment), it can permanently break this trust.</p>
-                        </div>
-                        <div id="s5-tab3" class="cue-tab-content">
-                            <h3>The ARIA Application: The "Nudge"</h3>
-                            <p>We are fundamentally changing Sarah's daily behavior. We are "nudging" her to stop using a patchwork of stressful, unreliable options and instead trust a single, seamless system. The value unlocked is so high, the behavioral shift becomes permanent.</p>
-                        </div>
+                    <div class="cue-card">
+                        <h2 class="cue-title">Rent Instead of Buy</h2>
+                        <p class="cue-desc">Customers rent the product, reducing the capital typically needed to access it. Focuses on leasing assets instead of ownership.</p>
+                        <p class="cue-category">Category: Circular Economy</p>
                     </div>
                 </div>
 
-                <div class="slide-footer mt-4">
-                    <div class="logo">TATA ARIA</div>
-                    <div>CONFIDENTIAL & PROPRIETARY</div>
-                    <div>5 / 6</div>
+                <div class="cue-card-bottom-row">
+                    <div class="cue-card">
+                       <h3 class="cue-section-title"><span class="plus">+</span>Positive Impact</h3>
+                       <p class="cue-section-text">This model is key to accessibility. Sarah rents the mobility she needs on-demand, rather than spending $65k-$97k on a converted van. It removes the single biggest barrier to inclusive transport. Like "Rent the Runway," ARIA pools high-value assets (the cars) so a single product is shared by many consumers.</p>
+                    </div>
+                    <div class="cue-card">
+                        <h3 class="cue-section-title"><span class="minus">-</span>Challenges</h3>
+                        <p class="cue-section-text">The user has no backup asset; if the ARIA fleet is offline or high-demand, the customer has no mobility. This total reliance demands near-perfect service availability. It also removes the feeling of "ownership" or deep personalization (though ARIA's app aims to counter this).</p>
+                    </div>
+                    <div class="cue-card">
+                        <h3 class="cue-section-title"><span class="star">★</span>ARIA Example</h3>
+                        <p class="cue-section-text">Every ARIA journey is a rental. Sarah does not hire a personal driver or buy a van. She calls an ARIA when needed, renting the vehicle, the autonomous driver, and the service ecosystem for that specific trip, all covered by her subscription.</p>
+                    </div>
+                </div>
+
+                <div class="slide-footer" style="border-top-color: rgba(255,255,255,0.2);">
+                    <div class="logo text-white/90">TATA ARIA</div>
+                    <div class="text-white/70">CONFIDENTIAL & PROPRIETARY</div>
+                    <div class="text-white/70">6 / 10</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Cue Card 3 (NEW 2-PART LAYOUT) -->
+        <div id="slide7" class="slide" style="background-color: #0d1a2e;">
+            <div class="slide-content">
+                <h1 class="slide-header text-blue-300">Our Strategic Model (3/4)</h1>
+                <p class="slide-subheader text-white">Behavior Change</p>
+
+                <div class="cue-card-top-row">
+                    <div class="sbmc-diagram-new shadow-lg">
+                        <div class="sbmc-box"><span class="sbmc-box-title">Sustainable Partners</span><span class="num">1</span></div>
+                        <div class="sbmc-box"><span class="sbmc-box-title">Sustainable Value Creation</span><span class="num">2</span></div>
+                        <div class="sbmc-box highlight"><span class="sbmc-box-title">Sustainable Value Proposition</span><span class="num">4</span></div>
+                        <div class="sbmc-box highlight"><span class="sbmc-box-title">Sustainable Customer Relation</span><span class="num">5</span></div>
+                        <div class="sbmc-box highlight"><span class="sbmc-box-title">Responsible Customers</span><span class="num">7</span></div>
+                        <div class="sbmc-box" style="grid-row: 2; grid-column: 1;"><!-- Empty placeholder --></div>
+                        <div class="sbmc-box"><span class="sbmc-box-title">Sustainable Tech & Resources</span><span class="num">3</span></div>
+                        <div class="sbmc-box" style="grid-row: 2; grid-column: 3;"><!-- Empty placeholder --></div>
+                        <div class="sbmc-box"><span class="sbmc-box-title">Sust. Channels</span><span class="num">6</span></div>
+                        <div class="sbmc-box"><span class="sbmc-box-title">End of Life</span><span class="num">8</span></div>
+                        <div class="sbmc-box span-2"><span class="sbmc-box-title">Cost Structure & Additional Costs</span></div>
+                        <div class="sbmc-box"><span class="sbmc-box-title">Subsidisation</span></div>
+                        <div class="sbmc-box span-2"><span class="sbmc-box-title">Revenue & Sustainability Premium</span></div>
+                    </div>
+                    <div class="cue-card">
+                        <h2 class="cue-title">Behavior Change</h2>
+                        <p class="cue-desc">Provoking customers to adopt new behaviours, reduce consumption, or change daily habits via nudges, apps, or incentives.</p>
+                        <p class="cue-category">Category: IoT, Nudging, Quantified Self</p>
+                    </div>
+                </div>
+
+                <div class="cue-card-bottom-row">
+                    <div class="cue-card">
+                       <h3 class="cue-section-title"><span class="plus">+</span>Positive Impact</h3>
+                       <p class="cue-section-text">ARIA's app acts as a "nudge." It reminds users of school pick-ups or doctor visits, encouraging them to plan. It can also incentivize greener choices, like bundling errands into one trip or sharing a ride. By being an EV, it indirectly shifts users to cleaner transport habits.</p>
+                    </div>
+                    <div class="cue-card">
+                        <h3 class="cue-section-title"><span class="minus">-</span>Challenges</h3>
+                        <p class="cue-section-text">Nudges can feel pressuring or be mistrusted. There's a risk of unintended consequences (e.g., making travel too easy could increase congestion). There are also ethical concerns about privacy and how much ARIA should influence a user's decisions based on their health or location data.</p>
+                    </div>
+                    <div class="cue-card">
+                        <h3 class="cue-section-title"><span class="star">★</span>ARIA Example</h3>
+                        <p class="cue-section-text">The "Integrated Daily Errand Support" is a behavior change tool. It reminds Sarah of groceries and schedules pickups. This shifts her behavior from last-minute, high-stress trips to a more structured, less stressful, pre-planned routine.</p>
+                    </div>
+                </div>
+
+                <div class="slide-footer" style="border-top-color: rgba(255,255,255,0.2);">
+                    <div class="logo text-white/90">TATA ARIA</div>
+                    <div class="text-white/70">CONFIDENTIAL & PROPRIETARY</div>
+                    <div class="text-white/70">7 / 10</div>
                 </div>
             </div>
         </div>
         
-        <!-- Slide 6: Cue Card 3 (FIXED) -->
-        <div id="slide6" class="slide">
+        <!-- Slide 8: Cue Card 4 (NEW 2-PART LAYOUT) -->
+        <div id="slide8" class="slide" style="background-color: #0d1a2e;">
             <div class="slide-content">
-                <h1 class="slide-header">Our Strategic Model (3/3)</h1>
-                <p class="slide-subheader">The Core Competitive Moat</p>
+                <h1 class="slide-header text-blue-300">Our Strategic Model (4/4)</h1>
+                <p class="slide-subheader text-white">Industrial Symbiosis</p>
 
-                <div class="cue-card-container">
-                    <!-- SBMC Diagram -->
-                    <div class="sbmc-diagram">
+                <div class="cue-card-top-row">
+                    <div class="sbmc-diagram-new shadow-lg">
                         <div class="sbmc-box highlight"><span class="sbmc-box-title">Sustainable Partners</span><span class="num">1</span></div>
                         <div class="sbmc-box"><span class="sbmc-box-title">Sustainable Value Creation</span><span class="num">2</span></div>
                         <div class="sbmc-box"><span class="sbmc-box-title">Sustainable Value Proposition</span><span class="num">4</span></div>
-                        <div class="sbmc-box"><span class="sbmc-box-title">Sustainable Customer Relation</span><span class="num">5</span></div>
+                        <div class="sbmc-box"><span class="sbmc-box-title">Sustainable Customer Relation</span><span class_name="num">5</span></div>
                         <div class="sbmc-box"><span class="sbmc-box-title">Responsible Customers</span><span class="num">7</span></div>
-                        
                         <div class="sbmc-box" style="grid-row: 2; grid-column: 1;"><!-- Empty placeholder --></div>
                         <div class="sbmc-box"><span class="sbmc-box-title">Sustainable Tech & Resources</span><span class="num">3</span></div>
                         <div class="sbmc-box" style="grid-row: 2; grid-column: 3;"><!-- Empty placeholder --></div>
                         <div class="sbmc-box"><span class="sbmc-box-title">Sust. Channels</span><span class="num">6</span></div>
                         <div class="sbmc-box highlight"><span class="sbmc-box-title">End of Life</span><span class="num">8</span></div>
-                        
                         <div class="sbmc-box span-2"><span class="sbmc-box-title">Cost Structure & Additional Costs</span></div>
                         <div class="sbmc-box"><span class="sbmc-box-title">Subsidisation</span></div>
                         <div class="sbmc-box span-2"><span class="sbmc-box-title">Revenue & Sustainability Premium</span></div>
                     </div>
-
-                    <!-- Interactive Tabs -->
-                    <div class="cue-card-interactive">
-                        <div class="cue-header">
-                            <h2 class="cue-title">4. Industrial Symbiosis</h2>
-                            <p class="cue-desc">Sharing of services, utility, and by-product resources among industries to improve resource efficiency.</p>
-                            <p class="cue-category">Category: Circular Economy, Sharing Economy</p>
-                        </div>
-                        <nav class="cue-tab-nav">
-                            <button class="cue-tab-button active" onclick="openTab(this, 's6-tab1')">
-                                <span class="plus">+</span>Positive Impact
-                            </button>
-                            <button class="cue-tab-button" onclick="openTab(this, 's6-tab2')">
-                                <span class="minus">-</span>Risks
-                            </button>
-                            <button class="cue-tab-button" onclick="openTab(this, 's6-tab3')">
-                                <span class="star">★</span>In the Spotlight
-                            </button>
-                        </nav>
-                        <div id="s6-tab1" class="cue-tab-content active">
-                            <h3>Makes Competition Irrelevant</h3>
-                            <p>Creates extremely high barriers to entry by pre-integrating partners. A rival automaker can't copy our service overnight. This ecosystem becomes our "moat," protecting us from competition.</p>
-                        </div>
-                        <div id="s6-tab2" class="cue-tab-content">
-                            <h3>Complex & Reliant on Partners</h3>
-                            <p>Complex to build and maintain. We become reliant on 3rd-party partners (hospitals, supermarkets) who may not meet TATA's high standards of quality and reliability, creating network vulnerability.</p>
-                        </div>
-                        <div id="s6-tab3" class="cue-tab-content">
-                            <h3>The ARIA Application: The Ecosystem Moat</h3>
-                            <p>This is our "ecosystem moat." Any competitor can build an accessible AV. They cannot easily copy our deep API integration with healthcare networks or our exclusive "ARIA-only" pickup lanes at partner supermarkets. We are building a new utility, not just a new car.</p>
-                        </div>
+                    <div class="cue-card">
+                        <h2 class="cue-title">Industrial Symbiosis</h2>
+                        <p class="cue-desc">Resource sharing between industries, where one company's service becomes another's input, creating an ecosystem.</p>
+                        <p class="cue-category">Category: Circular Economy, Sharing Economy</p>
                     </div>
                 </div>
 
-                <div class="slide-footer mt-4">
-                    <div class="logo">TATA ARIA</div>
-                    <div>CONFIDENTIAL & PROPRIETARY</div>
-                    <div>6 / 6</div>
+                <div class="cue-card-bottom-row">
+                    <div class="cue-card">
+                        <h3 class="cue-section-title"><span class="plus">+</span>Positive Impact</h3>
+                        <p class="cue-section-text">This is our "ecosystem moat." ARIA shares logistics with supermarkets, pharmacies, and hospitals. Retailers get an exclusive delivery service, healthcare providers get faster patient transport, and TATA utilizes its fleet efficiently. This creates high barriers to entry for rivals.</p>
+                    </div>
+                    <div class="cue-card">
+                        <h3 class="cue-section-title"><span class="minus">-</span>Challenges</h3>
+                        <p class="cue-section-text">Deep integration creates dependency. If a key partner (e.g., a hospital) drops out, the network is fragile. It also requires complex coordination of data and legal agreements. Data privacy is a concern, as third parties get access to user trip/health info.</p>
+                    </div>
+                    <div class="cue-card">
+                        <h3 class="cue-section-title"><span class="star">★</span>ARIA Example</h3>
+                        <p class="cue-section-text">Our partnership with pharmacies for prescription delivery is a perfect example. ARIA's AV fleet (a logistics resource) is shared with the pharmacy (a retail resource) to create a new, efficient service that benefits both companies and, most importantly, the customer (Sarah).</p>
+                    </div>
+                </div>
+
+                <div class="slide-footer" style="border-top-color: rgba(255,255,255,0.2);">
+                    <div class="logo text-white/90">TATA ARIA</div>
+                    <div class="text-white/70">CONFIDENTIAL & PROPRIETARY</div>
+                    <div class="text-white/70">8 / 10</div>
                 </div>
             </div>
         </div>
+
+        <!-- Slide 9: Ethical Framework (NEW) -->
+        <div id="slide9" class="slide">
+            <div class="slide-content">
+                <h1 class="slide-header">Our Foundation</h1>
+                <p class="slide-subheader">Ethical & Sustainable Framework</p>
+
+                <div class="grid grid-cols-3 gap-8 flex-grow">
+                    <!-- People -->
+                    <div class="persona-card flex flex-col items-center text-center shadow-xl border-t-8 border-blue-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 text-blue-800" viewBox="0 0 20 20" fill="currentColor">
+                          <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+                        </svg>
+                        <h3 class="text-2xl font-bold text-blue-800 mt-4 mb-2">PEOPLE</h3>
+                        <p class="text-gray-700">ARIA acts as a transportation "equalizer," opening access to jobs, health, and education. It directly answers UN Convention (Art. 9) by providing mobility on an equal basis and supports SDG 10 (Reduced Inequality).</p>
+                    </div>
+                    <!-- Planet -->
+                    <div class="persona-card flex flex-col items-center text-center shadow-xl border-t-8 border-green-700">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 text-green-700" viewBox="0 0 20 20" fill="currentColor">
+                          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.002 6.002 0 0110.421 2.316A6.002 6.002 0 018.35 15.82a6.002 6.002 0 01-4.018-7.793z" clip-rule="evenodd" />
+                          <path d="M10.894 4.053a5.978 5.978 0 00-4.242 1.306 6.002 6.002 0 017.373 9.324 5.978 5.978 0 00-3.131-10.63z" />
+                        </svg>
+                        <h3 class="text-2xl font-bold text-green-700 mt-4 mb-2">PLANET</h3>
+                        <p class="text-gray-700">The entire ARIA fleet is all-electric with zero tailpipe emissions. This reduces greenhouse gases and urban pollution, directly supporting climate targets (SDG 13) and creating cleaner, healthier cities (SDG 11).</p>
+                    </div>
+                    <!-- Profit -->
+                    <div class="persona-card flex flex-col items-center text-center shadow-xl border-t-8 border-yellow-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 text-yellow-600" viewBox="0 0 20 20" fill="currentColor">
+                          <path d="M8.433 7.418c.158-.103.34-.153.533-.153h.067c.192 0 .375.05.533.153L10 8.25l.433-.832c.158-.103.34-.153.533-.153h.067c.192 0 .375.05.533.153L12 8.25l.433-.832c.158-.103.34-.153.533-.153h.067c.192 0 .375.05.533.153L14 8.25l.433-.832c.158-.103.34-.153.533-.153h.067c.192 0 .375.05.533.153L16 8.25l.433-.832c.158-.103.34-.153.533-.153h.067c.192 0 .375.05.533.153L18 8.25l.433-.832c.158-.103.34-.153.533-.153h.002c.192 0 .375.05.533.153L20 8.25V6.03a.75.75 0 00-.75-.75h-18.5A.75.75 0 00.75 6.03v2.22l.433-.832c.158-.103.34-.153.533-.153h.067c.192 0 .375.05.533.153L2 8.25l.433-.832c.158-.103.34-.153.533-.153h.067c.192 0 .375.05.533.153L4 8.25l.433-.832c.158-.103.34-.153.533-.153h.067c.192 0 .375.05.533.153L6 8.25l.433-.832c.158-.103.34-.153.533-.153h.067c.192 0 .375.05.533.153L8 8.25l.433-.832zM20 12.47V10.25l-.433.832c-.158.103-.34.153-.533.153h-.067c-.192 0-.375-.05-.533-.153L18 10.25l-.433.832c-.158.103-.34.153-.533.153h-.067c-.192 0-.375-.05-.533-.153L16 10.25l-.433.832c-.158.103-.34.153-.533.153h-.067c-.192 0-.375-.05-.533-.153L14 10.25l-.433.832c-.158.103-.34.153-.533-.153h-.067c-.192 0-.375-.05-.533-.153L12 10.25l-.433.832c-.158.103-.34.153-.533.153h-.067c-.192 0-.375-.05-.533-.153L10 10.25l-.433.832c-.158.103-.34.153-.533.153H9.002c-.192 0-.375-.05-.533-.153L8 10.25l-.433.832c-.158.103-.34.153-.533.153H7.002c-.192 0-.375-.05-.533-.153L6 10.25l-.433.832c-.158.103-.34.153-.533.153H5.002c-.192 0-.375-.05-.533-.153L4 10.25l-.433.832c-.158.103-.34.153-.533.153H3.002c-.192 0-.375-.05-.533-.153L2 10.25l-.433.832c-.158.103-.34.153-.533.153H1.002c-.192 0-.375-.05-.533-.153L0 10.25v2.22l.433-.832c.158-.103.34-.153.533-.153h.067c.192 0 .375.05.533.153L2 12.47l.433-.832c.158-.103.34-.153.533-.153h.067c.192 0 .375.05.533.153L4 12.47l.433-.832c.158-.103.34-.153.533-.153h.067c.192 0 .375.05.533.153L6 12.47l.433-.832c.158-.103.34-.153.533-.153h.067c.192 0 .375.05.533.153L8 12.47l.433-.832c.158-.103.34-.153.533-.153h.067c.192 0 .375.05.533.153L10 12.47l.433-.832c.158-.103.34-.153.533-.153h.067c.192 0 .375.05.533.153L12 12.47l.433-.832c.158-.103.34-.153.533-.153h.067c.192 0 .375.05.533.153L14 12.47l.433-.832c.158-.103.34-.153.533-.153h.067c.192 0 .375.05.533.153L16 12.47l.433-.832c.158-.103.34-.153.533-.153h.067c.192 0 .375.05.533.153L18 12.47l.433-.832c.158-.103.34-.153.533-.153h.002c.192 0 .375.05.533.153L20 12.47z" />
+                        </svg>
+                        <h3 class="text-2xl font-bold text-yellow-600 mt-4 mb-2">PROFIT</h3>
+                        <p class="text-gray-700">The subscription model creates stable, recurring revenue. It also delivers "comprehensive profit" to society by reducing healthcare costs and unlocking lost productivity (like Sarah's $8.7k/year).</p>
+                    </div>
+                </div>
+                
+                <div class="slide-footer">
+                    <div class="logo">TATA ARIA</div>
+                    <div>CONFIDENTIAL & PROPRIETARY</div>
+                    <div>9 / 10</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 10: GTM Strategy (NEW & Creative Change) -->
+        <div id="slide10" class="slide" style="background-color: #003366; color: white;">
+            <div class="slide-content">
+                <h1 class="slide-header text-white/80">The Path Forward</h1>
+                <p class="slide-subheader text-white">Go-to-Market & Value Proposition</p>
+
+                <div class="grid grid-cols-2 gap-8 flex-grow">
+                    <!-- GTM -->
+                    <div class="persona-card text-gray-800 shadow-lg"> 
+                        <h3 class="text-2xl font-bold text-blue-800 mb-4">Go-to-Market Strategy</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-blue-800 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                                <div>
+                                    <h4 class="font-bold text-lg">1. Phased City Rollout</h4>
+                                    <p class="text-gray-700">Launch pilots in high-demand urban areas (e.g., Chicago, NYC, SF) via public-private partnerships with local governments.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-blue-800 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v.01M12 12v.01M12 12v.01M12 16v.01M12 16v.01M12 20v.01M12 20v.01M4 6h16M4 10h16M4 14h16M4 18h16" /></svg>
+                                <div>
+                                    <h4 class="font-bold text-lg">2. Leverage Incentives</h4>
+                                    <p class="text-gray-700">Utilize Federal EV credits ($7,500), Clean Air Zone funding, and corporate sponsorships to reduce subscription costs for low-income users.</p>
+                                </div>
+                            </li>
+                             <li class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-blue-800 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                                <div>
+                                    <h4 class="font-bold text-lg">3. Build the Ecosystem</h4>
+                                    <p class="text-gray-700">Create built-in demand via alliances with healthcare systems (patient transport), retailers (deliveries), and employers (shuttle services).</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Value Prop -->
+                    <div class="persona-card bg-white text-gray-800 shadow-lg">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-4">Our Core Value Proposition</h3>
+                        <p class="text-5xl font-bold text-blue-800 leading-tight">"Designed <span class="italic">With</span>, Not <span class="italic">For</span>."</p>
+                        <p class="text-lg mt-6 text-gray-700">
+                            Our value is based on co-creation and empathy. By involving stakeholders like Sarah from day one, we address *actual* pain points, not assumed ones.
+                        </bodyp>
+                        <p class="text-lg mt-4 text-gray-700">
+                            The inbuilt ramp allowing Sarah to sit **next to** her child isn't a feature—it's a design choice that provides dignity, comfort, and social connection.
+                        </p>
+                        <p class="text-lg mt-4 text-gray-700">
+                            ARIA maintains user agency. Sarah is not controlled by her circumstances; she is given the control. This aligns with disability ethics, offering users control and voice, and affirming human dignity.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="slide-footer text-white/70" style="border-top-color: rgba(255,255,255,0.2);">
+                    <div class="logo text-white/90">TATA ARIA</div>
+                    <div>CONFIDENTIAL & PROPRIETARY</div>
+                    <div>10 / 10</div>
+                </div>
+            </div>
+        </div>
+
 
         <!-- Navigation Arrows -->
         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
@@ -650,50 +824,6 @@
                 slides[currentSlide-1].classList.add("active");
             }
         }
-
-        // Tab functionality
-        function openTab(btnElement, tabId) {
-            // Get all tab content elements in the same card and hide them
-            let card = btnElement.closest('.cue-card-interactive');
-            if (!card) return; // Guard clause in case element isn't found
-            
-            let tabContents = card.getElementsByClassName('cue-tab-content');
-            for (let i = 0; i < tabContents.length; i++) {
-                tabContents[i].style.display = 'none';
-                tabContents[i].classList.remove('active');
-            }
-
-            // Get all tab button elements in the same card and remove 'active'
-            let tabButtons = card.getElementsByClassName('cue-tab-button');
-            for (let i = 0; i < tabButtons.length; i++) {
-                tabButtons[i].classList.remove('active');
-            }
-
-            // Show the current tab and add 'active' class to the button
-            let currentTab = document.getElementById(tabId);
-            if (currentTab) {
-                currentTab.style.display = 'block';
-                currentTab.classList.add('active');
-            }
-            btnElement.classList.add('active');
-        }
-
-        // Initialize default tabs for each slide
-        document.addEventListener("DOMContentLoaded", function() {
-            // Helper function to safely initialize tabs
-            function initTab(slideId, tabId) {
-                let initialButton = document.querySelector(slideId + ' .cue-tab-button.active');
-                if (initialButton) {
-                    openTab(initialButton, tabId);
-                }
-            }
-            
-            // We only need to initialize the tabs for the slides that have them
-            initTab('#slide4', 's4-tab1');
-            initTab('#slide5', 's5-tab1');
-            initTab('#slide6', 's6-tab1');
-        });
-
     </script>
 </body>
 </html>
